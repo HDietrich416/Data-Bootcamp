@@ -4,11 +4,11 @@ In this project, a Python script is used to visualize the weather of 500+ cities
 
 A series of scatter plots will showcase the following relationships:
 
-     *Temperature (F) vs. Latitude
+* Temperature (F) vs. Latitude
 
-    * Humidity (%) vs. Latitude
+* Humidity (%) vs. Latitude
 
-    * Cloudiness (%) vs. Latitude
+* Cloudiness (%) vs. Latitude
 
-    * Wind Speed (mph) vs. Latitude
+* Wind Speed (mph) vs. Latitude
 
