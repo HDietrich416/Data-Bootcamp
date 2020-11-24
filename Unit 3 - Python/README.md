@@ -1,4 +1,4 @@
-# Python-challenge
+# Python-Challenge
 
 ### PyBank: 
 This python script reads in a csv file with two columns (date and profit/losses) and performs a number of calculations to output the following financial analysis results:
