@@ -41,7 +41,7 @@ AND last_name LIKE 'B%';
 --6. List all employees in the Sales department, including their employee number, 
 --last name, first name, and department name.
 
-SELECT emp_no, first_name, last_name
+SELECT emp_no, last_name, first_name
 FROM employees
 WHERE emp_no IN (
 			SELECT emp_no
@@ -50,16 +50,25 @@ WHERE emp_no IN (
 						SELECT dept_no
 						FROM departments
 						WHERE dept_name = 'Sales'))
+ORDER BY emp_no ASC;
 
-				
-SELECT emp_no, dept_name
+
+			
+SELECT emp_no, departments.dept_name
 FROM dept_emp
 JOIN departments ON departments.dept_no = dept_emp.dept_no
+WHERE dept_emp.dept_no  = (
+			SELECT dept_no
+			FROM departments
+			WHERE dept_name = 'Sales')
+ORDER BY emp_no ASC;
+
+
 
 --7.List all employees in the Sales and Development departments, including their 
 --employee number, last name, first name, and department name.
 
-SELECT emp_no, first_name, last_name
+SELECT emp_no, last_name, first_name
 FROM employees
 WHERE emp_no IN (
 			SELECT emp_no
@@ -71,9 +80,10 @@ WHERE emp_no IN (
 						OR dept_name = 'Development'))
 		
 		
-SELECT emp_no, dept_no
+SELECT emp_no, departments.dept_name
 FROM dept_emp
-WHERE dept_no IN (
+JOIN departments ON departments.dept_no = dept_emp.dept_no
+WHERE dept_emp.dept_no IN (
 			SELECT dept_no
 			FROM departments
 			WHERE dept_name = 'Sales'
