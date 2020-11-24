@@ -41,54 +41,61 @@ AND last_name LIKE 'B%';
 --6. List all employees in the Sales department, including their employee number, 
 --last name, first name, and department name.
 
-SELECT emp_no, last_name, first_name
-FROM employees
-WHERE emp_no IN (
-			SELECT emp_no
-			FROM dept_emp
-			WHERE dept_no = (
-						SELECT dept_no
-						FROM departments
-						WHERE dept_name = 'Sales'))
-ORDER BY emp_no ASC;
+CREATE VIEW Sales_emp_names AS
+	SELECT emp_no, last_name, first_name
+	FROM employees
+	WHERE emp_no IN (
+				SELECT emp_no
+				FROM dept_emp
+				WHERE dept_no = (
+							SELECT dept_no
+							FROM departments
+							WHERE dept_name = 'Sales'))
+	ORDER BY emp_no ASC;
 
 
-			
-SELECT emp_no, departments.dept_name
-FROM dept_emp
-JOIN departments ON departments.dept_no = dept_emp.dept_no
-WHERE dept_emp.dept_no  = (
-			SELECT dept_no
-			FROM departments
-			WHERE dept_name = 'Sales')
-ORDER BY emp_no ASC;
+CREATE VIEW Sales_emp_dept AS
+	SELECT emp_no, departments.dept_name
+	FROM dept_emp
+	JOIN departments ON departments.dept_no = dept_emp.dept_no
+	WHERE dept_emp.dept_no  = (
+				SELECT dept_no
+				FROM departments
+				WHERE dept_name = 'Sales')
+	ORDER BY emp_no ASC;
 
-
+SELECT Sales_emp_names.emp_no, Sales_emp_names.last_name, Sales_emp_names.first_name, Sales_emp_dept.dept_name
+FROM sales_emp_names
+JOIN Sales_emp_dept ON Sales_emp_dept.emp_no = sales_emp_names.emp_no;
 
 --7.List all employees in the Sales and Development departments, including their 
 --employee number, last name, first name, and department name.
 
-SELECT emp_no, last_name, first_name
-FROM employees
-WHERE emp_no IN (
-			SELECT emp_no
-			FROM dept_emp
-			WHERE dept_no IN (
-						SELECT dept_no
-						FROM departments
-						WHERE dept_name = 'Sales'
-						OR dept_name = 'Development'))
+CREATE VIEW sales_dev_emp_names AS
+	SELECT emp_no, last_name, first_name
+	FROM employees
+	WHERE emp_no IN (
+				SELECT emp_no
+				FROM dept_emp
+				WHERE dept_no IN (
+							SELECT dept_no
+							FROM departments
+							WHERE dept_name = 'Sales'
+							OR dept_name = 'Development'));
 		
-		
-SELECT emp_no, departments.dept_name
-FROM dept_emp
-JOIN departments ON departments.dept_no = dept_emp.dept_no
-WHERE dept_emp.dept_no IN (
-			SELECT dept_no
-			FROM departments
-			WHERE dept_name = 'Sales'
-			OR dept_name = 'Development')
-
+CREATE VIEW sales_dev_emp_dept AS	
+	SELECT emp_no, departments.dept_name
+	FROM dept_emp
+	JOIN departments ON departments.dept_no = dept_emp.dept_no
+	WHERE dept_emp.dept_no IN (
+				SELECT dept_no
+				FROM departments
+				WHERE dept_name = 'Sales'
+				OR dept_name = 'Development')
+			
+SELECT sales_dev_emp_names.emp_no, sales_dev_emp_names.last_name, sales_dev_emp_names.first_name, sales_dev_emp_dept.dept_name
+FROM sales_dev_emp_names
+JOIN sales_dev_emp_dept ON sales_dev_emp_dept.emp_no = sales_dev_emp_names.emp_no;
 
 --8. In descending order, list the frequency count of employee last names, 
 --i.e., how many employees share each last name.
