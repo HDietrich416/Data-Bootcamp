@@ -17,3 +17,5 @@ This python script reads in a csv file with 3 columns (Voter ID, County, and Can
 * The percentage of votes each candidate won 
 * The total number of votes each candidate won
 * The winner of the election based on popular vote
+
+Financial Analysis is output to terminal and to new CSV output file. 
