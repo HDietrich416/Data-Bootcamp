@@ -1,10 +1,14 @@
 from flask import Flask, jsonify
 
+
 app = Flask(__name__)
+app.config['Hawaii']= 'sqlite:///Resources/hawaii.sqlite'
+
+
 
 @app.route("/")
 def index():
-    return "Home page"
+    return jsonify(app)
 
 
 
