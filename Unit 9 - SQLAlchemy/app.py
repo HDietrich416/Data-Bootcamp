@@ -25,7 +25,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def home():
-    return "Welcome! <br/> <br/> Here are the available routes: <br/><br/>/api/v1.0/precipitation <br/> /api/v1.0/stations <br/> /api/v1.0/tobs <br/> /api/v1.0/<start> <br/> /api/v1.0/<start>/<end>"
+    return "Welcome! <br/> <br/> Here are the available routes: <br/><br/>/api/v1.0/precipitation <br/> /api/v1.0/stations <br/> /api/v1.0/tobs <br/> /api/v1.0/start <br/> /api/v1.0/start/end"
    
 @app.route("/api/v1.0/precipitation")
 def precipitation():
@@ -41,9 +41,9 @@ def precipitation():
         measurement_dict ={}
         measurement_dict['date'] = date
         measurement_dict['prcp'] = prcp
-        measurment.append(measurement_dict)
+        results.append(measurement_dict)
 
-    return jsonify(measurement)
+    return jsonify(measurement_dict)
 
 @app.route("/api/v1.0/stations")
 def stations(): 
