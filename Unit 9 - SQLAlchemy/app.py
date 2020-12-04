@@ -78,27 +78,22 @@ def tobs():
 @app.route("/api/v1.0/<start>")
 def start():
     session = Session(engine)
-    start_results = session.query( func.min(Measurement.tobs), \
-                    func.avg(Measurement.tobs), func.max(Measurement.tobs))\
-                    .filter(Measurement.date >=dt.datetime(start))\
-                    .order(Measurement.date).asc().all()
+    selection = [func.min(Measurement.tobs), func.avg(Measurement.tobs), func.max(Measurement.tobs)]
+    results = session.query(*selection).filter(Measurement.date >= start).all()
+
+    tobs_start = list(np.ravel(results))
     session.close()
+    return jsonify(tobs_start)
 
-    all_start = []
-    for  min, avg, max in start_results:
-        start_dict ={}
-        min = start_dict[func.min('tobs')]
-        avg = start_dict[func.avg('tobs')]
-        max = start_dict[func.max('tobs')]
-        all_start.append(start_dict)
+@app.route("/api/v1.0/<start>/<end>")
+def start_end():
+    session = Session(engine)
+    selection = [func.min(Measurement.tobs), func.avg(Measurement.tobs), func.max(Measurement.tobs)]
+    results = session.query(*selection).filter(Measurement.date >= start).filter(Measurement.date <= end).all()
 
-    return jsonify(all_start)
-
-
-
-#@app.route("/api/v1.0/<start>/<end>")
-
-
+    tobs_start_end = list(np.ravel(results))
+    session.close()
+    return jsonify(tobs_start_end)
 
 
 if __name__ =='__main__':
