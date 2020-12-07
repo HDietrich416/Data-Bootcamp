@@ -49,42 +49,30 @@
             </ul>
         </div>
     </nav>
+    <div class="container">
+        <h1>Comparison: Latitude vs X</h1>
+        <p>Click any plot to get an in-depth analysis. </p>
 
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-lg-6">
-            <div class = "container">
-                <h1>Summary: Latitude vs. X</h1>
-                    <img height=400 src=Assets/Images/MaxTemp.png>
-                    <p>The purpose of this project was to analyze how weather changes as you get closer to the equator. To acomplish this analysis, we first pulled data from the OpenWeatherMap API to assemble a dataset on over 500 cities. </p>
-                    <p>After assembling the dataset, we used Matplotlib to plot various aspects of the weather vs. latitude. Factors we looked at included: temperature, cloudiness, wind speed, and humidity. This site provides the source data and visualizations created as part of the analysis, as well as explanations and descriptions of any trends and correlations witnessed. </p>
-                    
-            </div>
+                <div class="row">
+                    <div class="column">
+                        <h3>vs. Max Tempurature</h3>
+                        <a href= "maxtemp.html">
+                            <img src=Assets/Images/MaxTemp.png>
+                        </a>
+                        <h3>vs. Cloudiness</h3>
+                        <a href="cloudiness.html">
+                            <img src=Assets/Images/Cloudiness.png></a>
+                    </div>
+                    <div class="column">
+                        <h3>vs. Humidity</h3>
+                        <a href="humidity.html">
+                            <img src=Assets/Images/Humidity.png></a>
+                        <h3>vs. Wind Speed</h3>
+                        <a href="windspeed.html">
+                            <img src=Assets/Images/WindSpeed.png></a>
+                    </div>
+
+                </div>
 </div>
-        <div class="col-lg-6">
-            <div class = "container" id="visualizations">
-                <h2>Visualizations</h2>
-                    <div class="row">
-                        <div class="column">
-                            <a href= "maxtemp.html">
-                                <img src=Assets/Images/MaxTemp.png>
-                            </a>
-                            <a href="cloudiness.html">
-                                <img src=Assets/Images/Cloudiness.png></a>
-                        </div>
-                        <div class="column">
-                            <a href="humidity.html">
-                                <img src=Assets/Images/Humidity.png></a>
-                            <a href="windspeed.html">
-                                <img src=Assets/Images/WindSpeed.png></a>
-                        </div>
-
-            </div>
-        </div>
-    </div>
-</div>
-
 </body>
-
-
-
+</html>
