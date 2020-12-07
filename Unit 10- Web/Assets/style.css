@@ -1,0 +1,10 @@
+.navbar-brand {background: #4aaaa5;
+               display: inline-block;
+                border-radius: 3px; 
+                color:#ffffff ;
+                font-size: 30px;
+                padding: 10px;
+                margin-left: 2%;}
+
+.navbar navbar-expand-lg {color: #000000;
+                        margin-right: 2%;}
