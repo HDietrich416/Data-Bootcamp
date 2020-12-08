@@ -42,3 +42,5 @@ body {background: #ededed;}
 
 nav select {display: none;}
 
+.selected {border: 5px solid #4aaaa5; }
+
