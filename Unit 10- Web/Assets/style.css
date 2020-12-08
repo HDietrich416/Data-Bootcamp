@@ -7,10 +7,12 @@
                 margin-left: 2%;}
 
 h1 {color: #4aaaa5 ;
-    padding: 20px}
+    padding: 20px;
+    border-bottom: 1px solid grey;}
 
 h2 {color: #4aaaa5;
-    padding: 20px }
+    padding: 20px ;
+    border-bottom: 1px solid grey;}
 
 h3 {color: #4aaaa5;
     text-align: center;}
@@ -43,4 +45,8 @@ body {background: #ededed;}
 nav select {display: none;}
 
 .selected {border: 5px solid #4aaaa5; }
+
+p {padding: 15px;}
+
+.container summary {margin-left: 20px;}
 
