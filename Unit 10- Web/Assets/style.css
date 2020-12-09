@@ -48,5 +48,9 @@ nav select {display: none;}
 
 p {padding: 15px;}
 
-.container summary {margin-left: 20px;}
 
+@media (max-width: 480px) {
+
+  .navbar {background:#4aaaa5;}
+
+} 
