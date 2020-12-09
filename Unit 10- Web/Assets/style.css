@@ -40,7 +40,8 @@ body {background: #ededed;}
     width: 100%;
   }
 
-.navbar {background: white;}
+.navbar {background: white;
+}
 
 nav select {display: none;}
 
@@ -48,9 +49,10 @@ nav select {display: none;}
 
 p {padding: 15px;}
 
+.nav-item {margin-right: 20px;}
 
 @media (max-width: 480px) {
 
-.navbar {background: #4aaaa5;}
+  .navbar {background: #4aaaa5;}
 
-} 
+ 
