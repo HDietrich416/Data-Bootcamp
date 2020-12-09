@@ -9,6 +9,8 @@
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  
+  
 
 
 </head>
@@ -16,7 +18,7 @@
 <body>
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">Latitude</a>
+        <a class="navbar-brand" href="index.html">Latitude</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -34,7 +36,7 @@
                 <a class="dropdown-item" href="cloudiness.html">Cloudiness</a>
                 <a class="dropdown-item" href="humidity.html">Humidity</a>
                 <a class="dropdown-item" href="maxtemp.html">Max Temperature</a>
-                <a class="dropdown-item" href="windspeed.html">WindSpeed</a>
+                <a class="dropdown-item" href="windspeed.html">Wind Speed</a>
               </div>
             </li>
             <li class="nav-item">
@@ -44,28 +46,43 @@
         </div>
     </nav>
     <div class="container">
-        <h1>Comparison: Latitude vs X</h1>
-        <p>Click any plot to get an in-depth analysis. </p>
-                    <div class="row">
-                        <div class="column">
-                            <h3>vs. Max Tempurature</h3>
-                            <a href= "maxtemp.html">
-                                <img src=Assets/Images/MaxTemp.png>
-                            </a>
-                            <h3>vs. Cloudiness</h3>
-                            <a href="cloudiness.html">
-                                <img src=Assets/Images/Cloudiness.png></a>
-                        </div>
-                        <div class="column">
-                            <h3>vs. Humidity</h3>
-                            <a href="humidity.html">
-                                <img src=Assets/Images/Humidity.png></a>
-                            <h3>vs. Wind Speed</h3>
-                            <a href="windspeed.html">
-                                <img src=Assets/Images/WindSpeed.png></a>
+        <div class="col-md-12">
+            <h1>Comparison: Latitude vs X</h1>
+            <p>Click any plot to get an in-depth analysis. </p>
+                        <div class="row">
+                            <div class="col-xs-12 col-md-6">
+                                <figure>
+                                    <h3>vs. Max Tempurature</h3>
+                                
+                                    <a href= "maxtemp.html">
+                                        <img src=Assets/Images/MaxTemp.png class="img-fluid">
+                                    </a>
+                                </figure>
+                            </div>
+                            <div class="col-xs-12 col-md-6">
+                                    <figure>
+                                        <h3>vs. Cloudiness</h3>
+                                        <a href="cloudiness.html">
+                                            <img src=Assets/Images/Cloudiness.png class="img-fluid"></a>
+                                    </figure>
+                            </div>
+                            <div class="col-xs-12 col-md-6">
+                                <figure>
+                                    <h3>vs. Humidity</h3>
+                                    <a href="humidity.html">
+                                        <img src=Assets/Images/Humidity.png class="img-fluid"></a>
+                                </figure>
+                            </div>
+                            <div class="col-xs-12 col-md-6">
+                                <figure>
+                                    <h3>vs. Wind Speed</h3>
+                                    <a href="windspeed.html">
+                                        <img src=Assets/Images/WindSpeed.png class="img-fluid"></a>
+                                </figure>
+                            </div>
                         </div>
                     </div>
-                </div>
+        </div>
     </div>            
 
 </body>

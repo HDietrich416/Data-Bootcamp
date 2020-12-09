@@ -34,7 +34,7 @@
                 <a class="dropdown-item" href="cloudiness.html">Cloudiness</a>
                 <a class="dropdown-item" href="humidity.html">Humidity</a>
                 <a class="dropdown-item" href="maxtemp.html">Max Temperature</a>
-                <a class="dropdown-item" href="windspeed.html">WindSpeed</a>
+                <a class="dropdown-item" href="windspeed.html">Wind Speed</a>
               </div>
             </li>
             <li class="nav-item">
@@ -53,29 +53,33 @@
                         <div class="column">  
                             <img src=Assets/Images/MaxTemp.png ALIGN ="left">
                         </div>
-                        <div class="column">  
+                          <div class="column">   
                             <p>The purpose of this project was to analyze how weather changes as you get closer to the equator. To acomplish this analysis, we first pulled data from the OpenWeatherMap API to assemble a dataset on over 500 cities. </p>
                             <p>After assembling the dataset, we used Matplotlib to plot various aspects of the weather vs. latitude. Factors we looked at included: temperature, cloudiness, wind speed, and humidity. This site provides the source data and visualizations created as part of the analysis, as well as explanations and descriptions of any trends and correlations witnessed. </p>
                         </div>
                     </div>    
             </div>
 </div>
-        <div class="col-lg-4">
+        <div class="col-md-4">
             <div class = "container" id="visualizations">
                 <h2>Visualizations</h2>
                     <div class="row">
-                        <div class="column">
+                        <div class="col-xs-6 col-sm-3 col-md-6">
                             <a href= "maxtemp.html">
-                                <img src=Assets/Images/MaxTemp.png>
+                                <img src=Assets/Images/MaxTemp.png class="img-fluid">
                             </a>
-                            <a href="cloudiness.html">
-                                <img src=Assets/Images/Cloudiness.png></a>
                         </div>
-                        <div class="column">
+                        <div class="col-xs-6 col-sm-3 col-md-6">
+                            <a href="cloudiness.html">
+                                <img src=Assets/Images/Cloudiness.png class="img-fluid"></a>
+                        </div>
+                        <div class="col-xs-6 col-sm-3 col-md-6">
                             <a href="humidity.html">
-                                <img src=Assets/Images/Humidity.png></a>
+                                <img src=Assets/Images/Humidity.png class="img-fluid"></a>
+                        </div>
+                        <div class="col-xs-6 col-sm-3 col-md-6">
                             <a href="windspeed.html">
-                                <img src=Assets/Images/WindSpeed.png></a>
+                                <img src=Assets/Images/WindSpeed.png class="img-fluid"></a>
                         </div>
 
             </div>
