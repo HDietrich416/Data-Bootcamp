@@ -10,23 +10,21 @@
 </head>
 
 <body>
-    <div class="jumbotron text-center">
-        <h1>Mission to Mars</h1>
-        <a href="./scrape" class="btn btn-primary" role="button">Scrape Mars Data</a>
-    </div>
-    <div class="container">
-        <div class:"row">
-            <h1>Latest Mars News</h1>
+    <div class="container-fluid">
+        <div class="jumbotron text-center">
+            <h1>Mission to Mars</h1>
+            <a href="/scrape" class="btn btn-primary" role="button">Scrape Mars Data</a>
+        </div>
+
+        <div class="container">
+            <h2>Latest Mars News</h2>
+                <h6>{{ mars.nasa_title }}</h6>
+                <p>{{ mars.article_title }}</p>
+                
         </div>
     </div>
 
-    {% for data in mars %}
-    <div class="container-fluid">
-        <h2>{{data.Title}}</h2>
-        <p>{{data.Article}}</p>
-    </div>
-
-    {% endfor %}
+    
 
 </body>
 

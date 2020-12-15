@@ -7,11 +7,18 @@ import pymongo
 from sqlalchemy import create_engine
 import psycopg2
 from splinter import Browser
+from selenium import webdriver
+
+
+def init_browser():
+    executable_path = {"executable_path": "/usr/Heather/Desktop/chromedriver.exe"}
+    driver = webdriver.Chrome(executable_path=r"/usr/Heather/Desktop/chromedriver.exe")
+    return Browser("chromedriver", **executable_path, headless=False)
+
 
 def scrape():
-    executable_path = {'executable_path': 'chromedriver.exe'}
-    browser = Browser('chrome', **executable_path, headless=False)
-
+    browser = init_browser()
+   
     # NASA Mars News
 
     nasa_url = 'https://mars.nasa.gov/news/'
@@ -20,8 +27,8 @@ def scrape():
     news_html = browser.html
     news_soup = bs(news_html,'lxml')
 
-    nasa_title = (news_soup.find('div', class_='bottom_gradient')).string
-    nasa_article = (news_soup.find('div', class_='article_teaser_body')).string
+    nasa_title = news_soup.find('div', class_='bottom_gradient').text
+    nasa_article = news_soup.find('div', class_='article_teaser_body').text
     
     # JPL Mars Space Images
 
@@ -42,7 +49,14 @@ def scrape():
 
     mars_table = mars_facts_df.to_html()
 
+    mars_data = {
+                "nasa_title":nasa_title, 
+                "nasa_article":nasa_article, 
+                "featured_image_url":featured_image_url, 
+                "mars_table":mars_table
+                }
 
-    scrape_data = {"nasa_title":nasa_title, "nasa_article":nasa_article, "featured_image_url":featured_image_url, "mars_table":mars_table}
+    # Close the browser
+    browser.quit()
 
-    return scrape_data
+    return mars_data
