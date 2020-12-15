@@ -43,6 +43,6 @@ def scrape():
     mars_table = mars_facts_df.to_html()
 
 
-    scrape_data = {"Title":nasa_title, "Article":nasa_article, "url":featured_image_url, "Table":mars_table}
+    scrape_data = {"nasa_title":nasa_title, "nasa_article":nasa_article, "featured_image_url":featured_image_url, "mars_table":mars_table}
 
     return scrape_data
