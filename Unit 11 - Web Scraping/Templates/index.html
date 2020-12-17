@@ -15,14 +15,25 @@
             <h1>Mission to Mars</h1>
             <a href="/scrape" class="btn btn-primary" role="button">Scrape Mars Data</a>
         </div>
+    </div>
 
         <div class="container">
             <h2>Latest Mars News</h2>
-                <h6>{{ mars.nasa_title }}</h6>
-                <p>{{ mars.article_title }}</p>
+                <h4>{{ mars.nasa_title }}</h4>
+                    <p>{{ mars.nasa_article }}</p>
                 
         </div>
-    </div>
+
+        <div class="container">
+            <h2>Featured Mars Image</h2>
+                <img src="{{mars.featured_image_url}}">
+        </div>
+
+        <div class ="container">
+            <h3>Mars Facts</h3>
+                <p>{{mars.mars_table | safe}}</p>
+
+        </div>
 
     
 

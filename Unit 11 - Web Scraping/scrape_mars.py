@@ -11,9 +11,8 @@ from selenium import webdriver
 
 
 def init_browser():
-    executable_path = {"executable_path": "/usr/Heather/Desktop/chromedriver.exe"}
-    driver = webdriver.Chrome(executable_path=r"/usr/Heather/Desktop/chromedriver.exe")
-    return Browser("chromedriver", **executable_path, headless=False)
+    executable_path = {"executable_path": "C:/Users/Heather/Desktop/chromedriver"}
+    return Browser("chrome", **executable_path, headless=False)
 
 
 def scrape():
