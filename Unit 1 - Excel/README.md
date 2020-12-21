@@ -9,7 +9,7 @@ Getting funded on Kickstarter requires meeting or exceeding the project's initia
 
 ## Instructions
 
-  ![Kickstarter Table]
+# Kickstarter Table
 
 * Using the Excel table provided, modify and analyze the data of 4,000 past Kickstarter projects as you attempt to uncover some market trends.
 
@@ -23,13 +23,13 @@ Getting funded on Kickstarter requires meeting or exceeding the project's initia
 
   * Create two new columns, one called `Category` at Q and another called `Sub-Category` at R, which use formulas to split the `Category and Sub-Category` column into two parts.
 
-  ![Category Stats]
+  # Category Stats
 
   * Create a new sheet with a pivot table that will analyze your initial worksheet to count how many campaigns were successful, failed, canceled, or are currently live per **category**.
 
   * Create a stacked column pivot chart that can be filtered by country based on the table you have created.
 
-  ![Subcategory Stats]
+  # Subcategory Stats
 
   * Create a new sheet with a pivot table that will analyze your initial sheet to count how many campaigns were successful, failed, or canceled, or are currently live per **sub-category**.
 
@@ -97,7 +97,6 @@ For those looking for an additional challenge, you will evaluate the number of b
 
 * Create a new worksheet in your workbook, and create a column each for the number of backers of successful campaigns and unsuccessful campaigns.
 
-  ![Images/backers01.png]
 
 * Use Excel to evaluate the following for successful campaigns, and then for unsuccessful campaigns:
 
