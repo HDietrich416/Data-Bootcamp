@@ -9,6 +9,10 @@ var button = d3.select("#filter-btn")
 
 var form = d3.select("form");
 
+// Select the table body
+
+var tableBody = d3.select("tbody")
+
 // Create event handles
 
 button.on("click", runEnter);
@@ -29,13 +33,23 @@ function runEnter() {
     // Filter data based on input date
     var filteredData = tableData.filter(data => data.datetime === inputValue);
 
-    console.log(filteredData);
+    // Clear table body of previous filter
 
-    //var tableBody = d3.select("tbody")
+    tableBody.html(" ");
+    
+    //Loop through filtered data and add to table data
+
+    filteredData.forEach(function(item) {
+
+        var row = tableBody.append("tr");
+
+        Object.entries(item).forEach(function([key, value]){
+            var cell = row.append("td");
+            cell.text(value);
 
 
+        });
 
-
-
+    });
 
 };
