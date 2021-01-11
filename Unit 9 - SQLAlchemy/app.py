@@ -17,6 +17,8 @@ from flask import Flask, jsonify
 engine = create_engine('sqlite:///Unit 9 - SQLAlchemy/Resources/hawaii.sqlite')
 Base = automap_base()
 Base.prepare(engine, reflect=True)
+
+# Save references to each table
 Measurement = Base.classes.measurement
 Station = Base.classes.station
 
@@ -25,15 +27,23 @@ app = Flask(__name__)
 
 @app.route("/")
 def home():
-    return "Welcome! <br/> <br/> Here are the available routes: <br/><br/>/api/v1.0/precipitation <br/> /api/v1.0/stations <br/> /api/v1.0/tobs <br/> /api/v1.0/start <br/> /api/v1.0/start/end"
+    return (
+        f"Welcome! <br/>"
+        f"Here are the available routes: <br/>"
+        f"/api/v1.0/precipitation <br/>"
+        f"/api/v1.0/stations <br/>"
+        f"/api/v1.0/tobs <br/>"
+        f"/api/v1.0/start <br/>"
+        f"/api/v1.0/start/end"
+    )
    
 @app.route("/api/v1.0/precipitation")
 def precipitation():
     last_date = dt.datetime(2017, 8, 23)
-    first_date = last_date - timedelta(days=364)
+    first_date = last_date - timedelta(days=365)
     session = Session(engine)
-    results = session.query(Measurement.date, Measurement.prcp)\
-                .filter(Measurement.date >=first_date)\
+    results = session.query(Measurement.date, Measurement.prcp).\
+                filter(Measurement.date >=first_date)\
                 .group_by(Measurement.date).all()
     session.close()
 
@@ -58,7 +68,7 @@ def stations():
 @app.route("/api/v1.0/tobs")
 def tobs():
     last_date = dt.datetime(2017, 8, 23)
-    first_date = last_date - timedelta(days=364)
+    first_date = last_date - timedelta(days=365)
     session = Session(engine)
     tobs_results = session.query(Measurement.date, Measurement.tobs)\
                      .filter(Measurement.station == "USC00519281")\
@@ -76,24 +86,26 @@ def tobs():
 
 
 @app.route("/api/v1.0/<start>")
-def start():
-    session = Session(engine)
-    selection = [func.min(Measurement.tobs), func.avg(Measurement.tobs), func.max(Measurement.tobs)]
-    results = session.query(*selection).filter(Measurement.date >= start).all()
-
-    tobs_start = list(np.ravel(results))
-    session.close()
-    return jsonify(tobs_start)
-
 @app.route("/api/v1.0/<start>/<end>")
-def start_end():
+def stats(start=None, end=None):
     session = Session(engine)
-    selection = [func.min(Measurement.tobs), func.avg(Measurement.tobs), func.max(Measurement.tobs)]
-    results = session.query(*selection).filter(Measurement.date >= start).filter(Measurement.date <= end).all()
 
-    tobs_start_end = list(np.ravel(results))
+    sel = [func.min(Measurement.tobs), func.avg(Measurement.tobs), func.max(Measurement.tobs)]
+    
+    if not end:
+        results = session.query(*sel).filter(Measurement.date >= start).all()
+
+        temps = list(np.ravel(results))
+        
+        return jsonify(temps)
+
+    results = session.query(*sel).filter(Measurement.date >= start).\
+        filter(Measurement.date >= start).\
+        filter(Measurement.date <= end).all()
+
+    temps = list(np.ravel(results))
+    return jsonify(temps)
     session.close()
-    return jsonify(tobs_start_end)
 
 
 if __name__ =='__main__':
