@@ -8,8 +8,7 @@ function Charts(sample) {
         var otu_ids = result.otu_ids;
         var otu_labels = result.otu_labels;      
 
-    //Bar Chart
-
+    //Bar Chart:
        var trace1 = {
 
             x: sample_values.slice(0,10).reverse(), 
@@ -38,7 +37,7 @@ function Charts(sample) {
     
     Plotly.newPlot("bar", sample_data, layout);
 
-    //Bubble Chart
+    //Bubble Chart:
         var trace2 = {
             x: otu_ids,
             y: sample_values,
@@ -66,7 +65,49 @@ function Charts(sample) {
     };
     Charts();
 
-  
+//Demographic Data and Belly Button Washing (Bonus)
+
+function updateMetadata(sample) {
+    d3.json("samples.json").then((data) => {
+        var metadata = data.metadata;
+        var filterArray = metadata.filter(sampleObject => sampleObject.id == sample);
+        var result = filterArray[0];
+        var metaPanel = d3.select("#sample-metadata");
+        metaPanel.html("");
+        Object.entries(result).forEach(([key, value]) => {
+            metaPanel.append("h6").text(`${key.toUpperCase()}: ${value}`)
+        })
+    
+    var data = [
+    {
+        domain: { x: [0, 1], y: [0, 1] },
+        marker: {size: 28, color:'850000'},
+        value: result.wfreq,
+        title: 'Belly Button Washing Frequency<br> Scrubs per Week',
+        titlefont: {family: '"Arial, Helvetica, sans-serif'},
+        type: "indicator",
+        gauge: { axis: { visible: true, range: [0, 9] } },
+        mode: "number+gauge"
+    }
+    ];
+
+    var layout = {
+    width: 600,
+    height: 450,
+    margin: { t: 100, r: 100, l: 100, b: 100 },
+    line: {
+    color: '600000'
+    },
+    font: { color: "#49a81d", family: "Arial, Helvetica, sans-serif" }
+    };
+
+    
+    Plotly.newPlot("gauge", data, layout);
+    });
+}
+
+// Initialize and change event
+
 function init(){
     var selector = d3.select("#selDataset");
     
@@ -81,11 +122,13 @@ function init(){
         });
     const firstbutton = subjectID[0];
     Charts(firstbutton);
+    updateMetadata(firstbutton);
           });
 }
 
 function optionChanged(newSample) {
     Charts(newSample);
+    updateMetadata(newSample);
    
 }
 
