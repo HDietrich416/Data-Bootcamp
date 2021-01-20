@@ -1,5 +1,6 @@
 
 function Charts(sample) {
+    // Select data
     d3.json("samples.json").then(data => {
         var samples = data.samples;
         var filterArray = samples.filter(sampleObject => sampleObject.id == sample);
@@ -63,7 +64,7 @@ function Charts(sample) {
 
     });
     };
-    Charts();
+Charts();
 
 //Demographic Data and Belly Button Washing (Bonus)
 
@@ -105,6 +106,8 @@ function updateMetadata(sample) {
     Plotly.newPlot("gauge", data, layout);
     });
 }
+
+updateMetadata();
 
 // Initialize and change event
 
