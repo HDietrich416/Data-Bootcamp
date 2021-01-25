@@ -68,15 +68,15 @@
         .attr("stroke-width", "1");
 
     // State abbreviations
-    chartGroup.selectAll("text")
-      .data(censusData)
-      .enter()
-      .append("text")
-      .attr("x", (d,i) => xLinearScale(d.poverty))
-      .attr("y", d => (yLinearScale(d.healthcare-0.18)))
-      .classed("stateText", true)
-      .text(d => d.state);
-      
+      chartGroup.selectAll("text")
+        .data(censusData)
+        .enter()
+        .append("text")
+        .attr("x", (d,i) => xLinearScale(d.poverty))
+        .attr("y", d => (yLinearScale(d.healthcare-0.18)))
+        .classed("stateText", true)
+        .text(d => d.state);
+        
         
     // Create axes labels
     chartGroup.append("text")
