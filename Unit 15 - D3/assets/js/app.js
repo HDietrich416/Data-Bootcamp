@@ -1,7 +1,7 @@
     // SVG wrapper dimensions are determined by the current width and
     // height of the browser window.
-    var svgWidth = 960;
-    var svgHeight = 500;
+    var svgWidth = 800;
+    var svgHeight = 560;
   
     var margin = {
       top: 50,
@@ -37,11 +37,11 @@
   
       // create scales
       var xLinearScale = d3.scaleLinear()
-        .domain(d3.extent(censusData, d => d.poverty))
+        .domain([8, (d3.max(censusData, d => d.poverty)+2)])
         .range([0, width]);
   
       var yLinearScale = d3.scaleLinear()
-        .domain([0, d3.max(censusData, d => d.healthcare)])
+        .domain([4, (d3.max(censusData, d => d.healthcare)+2)])
         .range([height, 0]);
   
       // create axes
@@ -63,11 +63,21 @@
         .append("circle")
         .attr("cx", d => xLinearScale(d.poverty))
         .attr("cy", d => yLinearScale(d.healthcare))
-        .attr("r", "10")
-        .attr("fill", "lightblue")
-        .attr("stroke-width", "1")
-        .attr("stroke", "black");
+        .attr("r", "9")
+        .classed("stateCircle", true)
+        .attr("stroke-width", "1");
+
+    // State abbreviations
+    chartGroup.selectAll("text")
+      .data(censusData)
+      .enter()
+      .append("text")
+      .attr("x", (d,i) => xLinearScale(d.poverty))
+      .attr("y", d => (yLinearScale(d.healthcare-0.18)))
+      .classed("stateText", true)
+      .text(d => d.state);
       
+        
     // Create axes labels
     chartGroup.append("text")
       .attr("transform", "rotate(-90)")
@@ -82,6 +92,8 @@
       .attr("transform", `translate(${width / 2}, ${height + margin.top -10})`)
       .attr("class", "axisText")
       .text("In Poverty (%)");
+    
+    
 
   
     }).catch(function(error) {
