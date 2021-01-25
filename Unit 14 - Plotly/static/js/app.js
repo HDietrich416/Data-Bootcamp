@@ -1,4 +1,3 @@
-
 function Charts(sample) {
     // Select data
     d3.json("samples.json").then(data => {
