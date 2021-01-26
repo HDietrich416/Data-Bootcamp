@@ -1,5 +1,4 @@
-    // SVG wrapper dimensions are determined by the current width and
-    // height of the browser window.
+    // SVG wrapper 
     var svgWidth = 800;
     var svgHeight = 560;
   
@@ -15,24 +14,24 @@
   
     // Append SVG element
     var svg = d3.select("#scatter")
-      .append("svg")
-      .attr("height", svgHeight)
-      .attr("width", svgWidth);
+                .append("svg")
+                .attr("height", svgHeight)
+                .attr("width", svgWidth);
   
     // Append group element
     var chartGroup = svg.append("g")
-      .attr("transform", `translate(${margin.left}, ${margin.top})`);
+                        .attr("transform", `translate(${margin.left}, ${margin.top})`);
   
     // Read CSV
     d3.csv("assets/data/data.csv").then(function(censusData) {
   
         console.log(censusData)
         
-      // parse data
-      censusData.forEach(function(data) {
-        data.poverty = +data.poverty;
-        data.healthcare = +data.healthcare;
-        data.state = data.abbr;
+        // parse data
+        censusData.forEach(function(data) {
+          data.poverty = +data.poverty;
+          data.healthcare = +data.healthcare;
+          data.state = data.abbr;
       });
   
       // create scales
@@ -73,7 +72,7 @@
         .enter()
         .append("text")
         .attr("x", (d,i) => xLinearScale(d.poverty))
-        .attr("y", d => (yLinearScale(d.healthcare-0.18)))
+        .attr("y", d => yLinearScale(d.healthcare-0.18))
         .classed("stateText", true)
         .text(d => d.state);
         
@@ -93,8 +92,6 @@
       .attr("class", "axisText")
       .text("In Poverty (%)");
     
-    
-
   
     }).catch(function(error) {
       console.log(error);
