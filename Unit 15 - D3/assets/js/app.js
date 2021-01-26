@@ -74,7 +74,10 @@
         .attr("x", (d,i) => xLinearScale(d.poverty))
         .attr("y", d => yLinearScale(d.healthcare-0.18))
         .classed("stateText", true)
-        .text(d => d.state);
+        .text(function(d) {
+          return d.abbr
+        });
+        //.text(d => d.state);
         
         
     // Create axes labels
@@ -92,6 +95,29 @@
       .attr("class", "axisText")
       .text("In Poverty (%)");
     
+
+    // Initalize Tooltip
+    var toolTip = d3.tip()
+        .attr("class", "d3-tip")
+        .offset([80, -70])
+        .style("position", "absolute")
+        .style("pointer-events", "none")
+        .html(function(d) {
+            return (`${d.state}<br>Population In Poverty (%): ${d.poverty}<br>Lacks Healthcare (%): ${d.healthcare}`)
+        });      
+
+  // tooltip in the chart
+    chartGroup.call(toolTip);   
+    
+  // Add an onmouseover event to display a tooltip   
+    circlesGroup.on("mouseover", function(data) {
+        toolTip.show(data, this);
+    })
+
+  // Add an on mouseout    
+    .on("mouseout", function(data, index) {
+        toolTip.hide(data);
+    });
   
     }).catch(function(error) {
       console.log(error);
