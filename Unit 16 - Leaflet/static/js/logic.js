@@ -20,22 +20,22 @@ d3.json(queryUrl, function(data) {
 // Define function to set the circle color based on the depth
 function circleColor(depth) {
   if (depth < 10) {
-    return "green"
+    return "#a3f600"
   }
   else if (depth < 30) {
-    return "yellow"
+    return "#dcf400"
   }
   else if (depth < 50) {
-    return "light orange"
+    return "#f7db11"
   }
   else if (depth < 70) {
-    return "orange"
+    return "#fdb72a"
   }
   else if (depth < 90) {
-    return "dark orange"
+    return "#fca65d"
   }
   else {
-    return "red"
+    return "#ff5f65"
   }
 }
 
@@ -44,7 +44,7 @@ function createFeatures(earthquakeData) {
     // Define a function we want to run once for each feature in the features array
     // Give each feature a popup describing the place and time of the earthquake
     function onEachFeature(feature, layer) {
-      layer.bindPopup("<h3>" + feature.properties.place +"</h3><hr><p>" + new Date(feature.properties.time) +"<br>"+ feature.geometry.coordinates[2] +"</p>");
+      layer.bindPopup("<h3>" + feature.properties.place +"</h3><hr><p>" + feature.properties.mag +"<br>"+ feature.geometry.coordinates + "</p>");
     }
   
     // Create a GeoJSON layer containing the features array on the earthquakeData object
@@ -53,7 +53,9 @@ function createFeatures(earthquakeData) {
       pointToLayer: function(earthquakeData, latlng) {
         return L.circle(latlng, {
           radius: radiusSize(earthquakeData.properties.mag),
-          color: circleColor(earthquakeData.geometry.coordinates[2])
+          color: circleColor(earthquakeData.geometry.coordinates[2]), 
+          fillOpacity: 1, 
+          stroke: true
         });
       },
       
@@ -102,5 +104,36 @@ function createFeatures(earthquakeData) {
     L.control.layers(baseMaps, overlayMaps, {
       collapsed: false
     }).addTo(myMap);
+
+// color function to be used when creating the legend
+function getColor(d) {
+  return d > 90? '#ff5f65' :
+         d > 70 ? '#fca65d' :
+         d > 50 ? '#fdb72a' :
+         d > 30  ? '#f7db11' :
+         d > 10  ? '#dcf400' :
+                  '#a3f600';
+}
+
+     // Add legend to the map
+  var legend = L.control({position: 'bottomright'});
+  
+  legend.onAdd = function (map) {
+  
+      var div = L.DomUtil.create('div', 'info legend'),
+          mags = [0, 10, 30, 50, 70, 90],
+          labels = [];
+  
+      // loop through our density intervals and generate a label with a colored square for each interval
+      for (var i = 0; i < mags.length; i++) {
+          div.innerHTML +=
+              '<i style="background:' + getColor(mags[i] + 1) + '"></i> ' +
+              mags[i] + (mags[i + 1] ? '&ndash;' + mags[i + 1] + '<br>' : '+');
+      }
+  
+      return div;
+  };
+  
+  legend.addTo(myMap);
   }
   
