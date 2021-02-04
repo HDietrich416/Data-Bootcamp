@@ -116,24 +116,25 @@ function getColor(d) {
 }
 
      // Add legend to the map
-  var legend = L.control({position: 'bottomright'});
+var legend = L.control({ position: "bottomright" });
   
-  legend.onAdd = function (map) {
+legend.onAdd = function (map) {
   
-      var div = L.DomUtil.create('div', 'info legend'),
-          mags = [0, 10, 30, 50, 70, 90],
+      var div = L.DomUtil.create("div", "info legend");
+          mags = [0, 10, 30, 50, 70, 90];
           labels = [];
   
       // loop through our density intervals and generate a label with a colored square for each interval
       for (var i = 0; i < mags.length; i++) {
           div.innerHTML +=
+          labels.push(
               '<i style="background:' + getColor(mags[i] + 1) + '"></i> ' +
-              mags[i] + (mags[i + 1] ? '&ndash;' + mags[i + 1] + '<br>' : '+');
+              mags[i] + (mags[i + 1] ? '&ndash;' + mags[i + 1] + '<br>' : '+'));
       }
-  
+        div.innerHTML = labels.join('<br>');
       return div;
-  };
+};
   
-  legend.addTo(myMap);
-  }
+legend.addTo(myMap);
+}
   
