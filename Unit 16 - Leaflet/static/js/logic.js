@@ -103,10 +103,27 @@ function createFeatures(earthquakeData) {
       "Satellite": satellite, 
       "Outdoors": outdoors
     };
+
+    // Create faultline layer
+    var faultline = new L.LayerGroup();
   
+    //faultline data
+    var faultline_url= "https://raw.githubusercontent.com/fraxen/tectonicplates/master/GeoJSON/PB2002_plates.json";
+
+    d3.json(faultline_url, function(data) {
+      L.geoJSON(data, {
+        style: function() {
+          return {color:"red", fillOpacity: 0}
+        }
+      }).addTo(faultline)
+
+    })
+
+
     // Create overlay object to hold our overlay layer
     var overlayMaps = {
-      Earthquakes: earthquakes
+      Earthquakes: earthquakes, 
+      Faultlines: faultline
     };
   
     // Create our map, giving it the streetmap and earthquakes layers to display on load
@@ -115,7 +132,7 @@ function createFeatures(earthquakeData) {
         37.09, -95.71
       ],
       zoom: 5,
-      layers: [lightmap, earthquakes]
+      layers: [lightmap, earthquakes, faultline]
     });
   
     // Create a layer control
