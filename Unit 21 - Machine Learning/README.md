@@ -38,6 +38,11 @@ This assignment will:
 
 #### Random Forest Classifier
 
+|            |Accuracy   |
+|------------|-----------|
+|Base Model  |	  89.474%|
+|Tuned Model |	   89.76%|
+
 
 ![image](Output/RF_Classification_Report.PNG)
 
