@@ -39,7 +39,7 @@ This assignment will:
 #### Random Forest Classifier
 
 
-
+![image](Output/RF_Classification_Report.PNG)
 
 
 
