@@ -1,5 +1,6 @@
-# Machine Learning Homework - Exoplanet Exploration
+# Machine Learning - Exoplanet Exploration
 
+![image](Resources/exoplanets.jpeg)
 
 ## Background
 
@@ -46,5 +47,7 @@ This assignment will:
 
 ![image](Output/RF_Classification_Report.PNG)
 
+### Summary
 
 
+For this dataset, Random Forest Classifier (89.76% Accuracy) is a better model than Logistic Regression (87.19% Accuracy). Therefore, the RFC model is a reasonable predictor of exoplanet candidacy. 
